@@ -4,17 +4,17 @@ export let todos=[
     {
         id: uuid(),
     action:'action1',
-    date:'24-04-2009'
+    date:'2020-10-15'
     },
     {
         id: uuid(),
     action:'action2',
-    date:'07-09-2005'
+    date:'1990-01-01'
     },
     {
         id: uuid(),
     action:'action3',
-    date:'24-12-1900'
+    date:'2001-09-02'
     }
 ]
 

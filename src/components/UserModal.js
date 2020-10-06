@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { Modal, Form, Input } from 'antd';
+import { Modal, Form, Input,Button } from 'antd';
 
  function Usermodal({ visible, onCreate, onCancel }) {
-  
+  const [loading, setloading] = useState(false)
   const validateMessages = {
    
     types: {
       email: '${label} is not validate email!',
     },
   };
+
+  const handleSubmit = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        setloading(true)
+        // const data = await wait(5000)
+        setTimeout(() => {
+          form.resetFields();
+          onCreate(values);
+       
+          setloading(false)
+        }, 1000);
+     
+      })
+      .catch((info) => {
+        console.log('Validate Failed:', info);
+      });
+  }
 
   const [form] = Form.useForm();
   return (
@@ -19,17 +38,15 @@ import { Modal, Form, Input } from 'antd';
       okText="Create"
       cancelText="Cancel"
       onCancel={onCancel}
-      onOk={() => {
-        form
-          .validateFields()
-          .then((values) => {
-            form.resetFields();
-            onCreate(values);
-          })
-          .catch((info) => {
-            console.log('Validate Failed:', info);
-          });
-      }}
+      onOk={handleSubmit}
+      footer={[
+        <Button key="back"   onClick={onCancel}>
+           Cancel
+        </Button>,
+        <Button key="submit" type="primary" loading={loading} onClick={handleSubmit} >
+          Submit
+        </Button>,
+      ]}
     >
       <Form
         form={form}
@@ -50,7 +67,7 @@ import { Modal, Form, Input } from 'antd';
             },
           ]}
         >
-          <Input />
+          <Input placeholder="please enter your name"/>
         </Form.Item>
         <Form.Item
         name="email"
@@ -61,7 +78,7 @@ import { Modal, Form, Input } from 'antd';
           },
         ]}
       >
-        <Input />
+        <Input  placeholder="please enter your email id"/>
       </Form.Item>
       
       </Form>

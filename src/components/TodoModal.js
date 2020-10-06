@@ -1,9 +1,30 @@
 import React,{useState} from 'react'
 
-import { Modal, Form, Input,DatePicker } from 'antd';
+import { Modal, Form, Input,DatePicker,Button } from 'antd';
 
  function Todomodal({ visible, onCreate, onCancel }) {
     const [date, setDate] = useState(null)
+  const [loading, setloading] = useState(false)
+
+  const handleSubmit = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        setloading(true)
+        // const data = await wait(5000)
+        setTimeout(() => {
+          form.resetFields();
+          onCreate(values);
+        
+          setloading(false)
+        }, 1000);
+     
+      })
+      .catch((info) => {
+        console.log('Validate Failed:', info);
+      });
+  }
+
     const handleChange = value => {
       const datepicker= value.format('YYYY-MM-DD')
      
@@ -24,18 +45,15 @@ import { Modal, Form, Input,DatePicker } from 'antd';
       okText="Create"
       cancelText="Cancel"
       onCancel={onCancel}
-      onOk={() => {
-        form
-          .validateFields()
-          .then((values) => {
-            form.resetFields();
-         
-            onCreate(values);
-          })
-          .catch((info) => {
-            console.log('Validate Failed:', info);
-          });
-      }}
+      onOk={handleSubmit}
+      footer={[
+        <Button key="back"   onClick={onCancel}>
+          Cancel
+        </Button>,
+        <Button key="submit" type="primary" loading={loading} onClick={handleSubmit} >
+          Submit
+        </Button>,
+      ]}
     >
       <Form
         form={form}
@@ -56,11 +74,11 @@ import { Modal, Form, Input,DatePicker } from 'antd';
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Action"/>
         </Form.Item>
         <Form.Item label="DatePicker" name="date-picker">
        
-          <DatePicker onChange={handleChange} />
+          <DatePicker onChange={handleChange} placeholder="select date"/>
         </Form.Item>
        
       
