@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 
-import { Modal, Form, Input,Button } from 'antd';
+import { Modal, Form, Input,Button,DatePicker } from 'antd';
 
- function Usermodal({ visible, onCreate, onCancel }) {
+ function OpenModal({ isDisplay,visible, onCreate, onCancel }) {
+  const [date, setDate] = useState(null)
+
   const [loading, setloading] = useState(false)
   const validateMessages = {
    
@@ -10,6 +12,11 @@ import { Modal, Form, Input,Button } from 'antd';
       email: '${label} is not validate email!',
     },
   };
+  const handleChange = value => {
+    const datepicker= value.format('YYYY-MM-DD')
+   
+      setDate(value);
+    };
 
   const handleSubmit = () => {
     form
@@ -57,33 +64,59 @@ import { Modal, Form, Input,Button } from 'antd';
         }}
         validateMessages={validateMessages}
       >
-        <Form.Item
-          name="title"
-          label="Name"
-          rules={[
-            {
-              required: true,
-              message: 'Please input the title of collection!',
-            },
-          ]}
-        >
-          <Input placeholder="please enter your name"/>
-        </Form.Item>
-        <Form.Item
-        name="email"
-        label="Email"
+       
+   {isDisplay ? 
+        <>
+                <Form.Item
+
+            name="Action"
+            label="Action"
+            rules={[
+              {
+                required: true,
+                message: 'Please input the title of collection!',
+              },
+            ]}
+            >
+            <Input placeholder="Action"/>
+            </Form.Item>
+            <Form.Item label="DatePicker" name="date-picker">
+
+            <DatePicker onChange={handleChange} placeholder="select date"/>
+            </Form.Item>
+        </>
+   :
+   <>
+       <Form.Item
+        
+        name="title"
+        label="Name"
         rules={[
           {
-            type: 'email',
+            required: true,
+            message: 'Please input the title of collection!',
           },
         ]}
       >
-        <Input  placeholder="please enter your email id"/>
+        <Input  placeholder="please enter your name"/>
       </Form.Item>
-      
+      <Form.Item
+      name="email"
+      label="Email"
+      rules={[
+        {
+          type: 'email',
+        },
+      ]}
+    >
+      <Input  placeholder="please enter your email id"/>
+    </Form.Item>
+   </>
+   }
+   
       </Form>
     </Modal>
   );
 };
 
-export default Usermodal;
+export default OpenModal;

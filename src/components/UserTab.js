@@ -3,18 +3,19 @@ import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
 
 import {Button} from 'antd'
-import UserModal from './UserModal'
+import OpenModal from './OpenModal'
 
-import EditableTable from './EditableTable'
+import UserList from './UserList'
 import { addUser } from '../redux/actions';
 
 function UserTab() {
     
     const [visible, setVisible] = useState(false);
     const dispatch=useDispatch();
+   const isDisplay=false;
   
     const onCreate = (values) => {
-  
+  console.log("added values in list",values)
       dispatch(addUser(
       {
           id:uuid(),
@@ -37,7 +38,8 @@ function UserTab() {
               >
                Create User
               </Button>
-              <UserModal 
+              <OpenModal 
+              isDisplay={isDisplay}
                 visible={visible}
                 onCreate={onCreate}
                 onCancel={() => {
@@ -45,7 +47,7 @@ function UserTab() {
                 }}
               />
             
-              <EditableTable/>
+              <UserList/>
         </>
     )
 }

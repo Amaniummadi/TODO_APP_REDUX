@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import uuid from 'react-uuid';
 
 import {Button} from 'antd'
-import TodoModal from './TodoModal'
+
+import OpenModal from './OpenModal'
 
 import { addTodo } from '../redux/actions';
 import Todolist from './TodoList';
@@ -12,13 +13,14 @@ function Todotab() {
     
     const [visible, setVisible] = useState(false);
     const dispatch=useDispatch();
+    const isDisplay=true;
   
     const onCreate = (values) => {
 //   const datepicker=values['date-picker'].format('YYYY-MM-DD'));
       dispatch(addTodo(
       {
           id:uuid(),
-          action:values.title,
+          action:values.Action,
           date:values['date-picker'].format('YYYY-MM-DD'),
 
       }
@@ -37,7 +39,8 @@ function Todotab() {
               >
                Create Todo
               </Button>
-              <TodoModal 
+              <OpenModal 
+            isDisplay={isDisplay}
                 visible={visible}
                 onCreate={onCreate}
                 onCancel={() => {
@@ -45,7 +48,7 @@ function Todotab() {
                 }}
               />
             <Todolist/>
-              {/* <EditableTable/> */}
+           
         </>
     )
 }
