@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 
-import { Modal, Form, Input,Button,DatePicker } from 'antd';
+import { Modal, Form,Button } from 'antd';
+import UserForm from './UserForm';
+import Todoform from './TodoForm';
 
  function OpenModal({ isDisplay,visible, onCreate, onCancel }) {
   const [date, setDate] = useState(null)
@@ -67,52 +69,14 @@ import { Modal, Form, Input,Button,DatePicker } from 'antd';
        
    {isDisplay ? 
         <>
-                <Form.Item
-
-            name="Action"
-            label="Action"
-            rules={[
-              {
-                required: true,
-                message: 'Please input the title of collection!',
-              },
-            ]}
-            >
-            <Input placeholder="Action"/>
-            </Form.Item>
-            <Form.Item label="DatePicker" name="date-picker">
-
-            <DatePicker onChange={handleChange} placeholder="select date"/>
-            </Form.Item>
+        <Todoform handleChange={handleChange}/>
         </>
-   :
-   <>
-       <Form.Item
-        
-        name="title"
-        label="Name"
-        rules={[
-          {
-            required: true,
-            message: 'Please input the title of collection!',
-          },
-        ]}
-      >
-        <Input  placeholder="please enter your name"/>
-      </Form.Item>
-      <Form.Item
-      name="email"
-      label="Email"
-      rules={[
-        {
-          type: 'email',
-        },
-      ]}
-    >
-      <Input  placeholder="please enter your email id"/>
-    </Form.Item>
-   </>
-   }
+        :
+        <>
+            <UserForm/>
+          
+        </>
+        }
    
       </Form>
     </Modal>

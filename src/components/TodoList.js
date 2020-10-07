@@ -2,7 +2,7 @@
 
 import React, {  useState } from 'react';
 import {useSelector,useDispatch} from 'react-redux'
-import { Table, Input, Popconfirm, Form,Divider } from 'antd';
+import { Table, Input, Popconfirm, Form,Divider,DatePicker } from 'antd';
 import {  deleteTodo, updateTodo } from '../redux/actions';
 
 
@@ -14,10 +14,14 @@ const EditableCell = ({
   record,
   index,
   children,
+  handleDatePicker,
   ...restProps
 }) => {
   const inputNode = inputType === 'number' ?   
- <Input /> : <Input />;
+  <Input.Group compact>
+ 
+  <DatePicker style={{ width: '70%' }}  onChange={handleDatePicker}/>
+</Input.Group>: <Input />;
 
   return (
     <td {...restProps}>
@@ -46,10 +50,17 @@ const EditableCell = ({
 const Todolist = () => {
   const [form] = Form.useForm();
   const todoDetails=useSelector(state=>state.todo)
+  const [editabledate, setEditabledate] = useState(null)
 
  const dispatch=useDispatch();
 
-
+const handleDatePicker = (value) =>{
+  console.log("handleDatePicker",value);
+  const newdate= value.format('YYYY-MM-DD')
+  console.log("handleDatePicker",newdate);
+ 
+  setEditabledate(newdate)
+}
 
 //   const [data, setData] = useState(todoDetails);
   
@@ -59,7 +70,7 @@ const Todolist = () => {
   const isEditing = (record) => record.id === editingKey;
  
   const edit = (record) => {
-  
+    setEditabledate(record.date)
     form.setFieldsValue({
       action: '',
       date: '',
@@ -86,7 +97,7 @@ const Todolist = () => {
        
               id:id,
               action:row.action,
-              date:row.date,
+              date:editabledate,
           }));
      
     
@@ -187,11 +198,12 @@ const Todolist = () => {
        
 
         record,
-     
+        handleDatePicker,
         inputType: col.dataIndex === 'date' ? 'number' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
+       
       }),
     };
   });

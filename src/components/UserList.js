@@ -158,8 +158,8 @@ const UserList = () => {
           )
           }
             <Divider type="vertical" />
-               <Popconfirm title="Sure to delete?" disabled={editingKey !== ''}  onConfirm={()=>dispatch(deleteUser(record.id))}>
-             <a>Delete</a>
+               <Popconfirm title="Sure to delete?"   onConfirm={()=>dispatch(deleteUser(record.id))}>
+               <a  disabled={editingKey !== ''}  href="javascript:;">Delete</a>
           </Popconfirm>
       
           </span>
