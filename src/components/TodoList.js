@@ -190,13 +190,11 @@ const handleDatePicker = (value) =>{
     if (!col.editable) {
       return col;
     }
-   
+    
     return {
       ...col,
       onCell: (record) => (
           {
-       
-
         record,
         handleDatePicker,
         inputType: col.dataIndex === 'date' ? 'number' : 'text',
@@ -221,7 +219,7 @@ const handleDatePicker = (value) =>{
         rowClassName="editable-row"
         pagination={{
           onChange: cancel,
-        }}
+        }}    
       />
     </Form>
   );
