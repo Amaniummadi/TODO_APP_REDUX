@@ -154,7 +154,7 @@ const handleDatePicker = (value) =>{
           editable ? (
             <span>
               <a
-                href="javascript:;"
+               
                 onClick={() => save(record.id)}
                 style={{
                   marginRight: 8,
@@ -163,18 +163,18 @@ const handleDatePicker = (value) =>{
                 Save
               </a>
               <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                <a  href="javascript:;">Cancel</a>
+                <a  >Cancel</a>
               </Popconfirm>
             </span>
           ) : (
-            <a disabled={editingKey !== ''} onClick={() => edit(record)}  href="javascript:;">
+            <a disabled={editingKey !== ''} onClick={() => edit(record)} >
               Edit
             </a>
           )
           }
             <Divider type="vertical" />
                <Popconfirm title="Sure to delete?"  onConfirm={()=>dispatch(deleteTodo(record.id))}>
-             <a  disabled={editingKey !== ''}  href="javascript:;">Delete</a>
+             <a  disabled={editingKey !== ''}  >Delete</a>
           </Popconfirm>
       
           </span>
@@ -219,7 +219,8 @@ const handleDatePicker = (value) =>{
         rowClassName="editable-row"
         pagination={{
           onChange: cancel,
-        }}    
+        }} 
+        rowKey="id"   
       />
     </Form>
   );

@@ -139,7 +139,7 @@ const UserList = () => {
           editable ? (
             <span>
               <a
-                href="javascript:;"
+          
                 onClick={() => save(record.id)}
                 style={{
                   marginRight: 8,
@@ -159,7 +159,7 @@ const UserList = () => {
           }
             <Divider type="vertical" />
                <Popconfirm title="Sure to delete?"   onConfirm={()=>dispatch(deleteUser(record.id))}>
-               <a  disabled={editingKey !== ''}  href="javascript:;">Delete</a>
+               <a  disabled={editingKey !== ''} >Delete</a>
           </Popconfirm>
       
           </span>
@@ -202,6 +202,7 @@ const UserList = () => {
         pagination={{
           onChange: cancel,
         }}
+        rowKey="name" 
       />
     </Form>
   );
