@@ -29,6 +29,7 @@ const todoReducer=(state = todos,action)=>{
                 newTodos[index]=action.payload;
                 return newTodos;
             }  
+            return newTodos;
         default:
             return state;
       
@@ -67,7 +68,8 @@ const userReducer=(state = userDetails,action)=>{
             if(index !== -1){
                 newUsers[index]=action.payload;
                 return newUsers;
-            }  
+            } 
+            return newUsers;
         default:
             return state;
       

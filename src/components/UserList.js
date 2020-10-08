@@ -47,7 +47,7 @@ const UserList = () => {
 
 
 
-  const [data, setData] = useState(userDetails);
+  // const [data, setData] = useState(userDetails);
   
 
   const [editingKey, setEditingKey] = useState("");
@@ -100,11 +100,11 @@ const UserList = () => {
         
     
      
-        setData(newData);
+        // setData(newData);
         setEditingKey('');
       } else {
         newData.push(row);
-        setData(newData);
+        // setData(newData);
         setEditingKey('');
       }
     } catch (errInfo) {
@@ -138,7 +138,7 @@ const UserList = () => {
           {
           editable ? (
             <span>
-              <a
+              <a 
           
                 onClick={() => save(record.id)}
                 style={{
@@ -152,7 +152,7 @@ const UserList = () => {
               </Popconfirm>
             </span>
           ) : (
-            <a disabled={editingKey !== ''} onClick={() => edit(record)}>
+            <a  disabled={editingKey !== ''} onClick={() => edit(record)}>
               Edit
             </a>
           )

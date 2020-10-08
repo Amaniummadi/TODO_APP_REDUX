@@ -174,7 +174,7 @@ const handleDatePicker = (value) =>{
           }
             <Divider type="vertical" />
                <Popconfirm title="Sure to delete?"  onConfirm={()=>dispatch(deleteTodo(record.id))}>
-             <a  disabled={editingKey !== ''}  >Delete</a>
+             <a  disabled={editingKey !== ''}  href="!#">Delete</a>
           </Popconfirm>
       
           </span>

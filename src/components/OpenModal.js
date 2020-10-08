@@ -5,19 +5,20 @@ import UserForm from './UserForm';
 import Todoform from './TodoForm';
 
  function OpenModal({ isDisplay,visible, onCreate, onCancel }) {
-  const [date, setDate] = useState(null)
+  // const [date, setDate] = useState(null)
 
   const [loading, setloading] = useState(false)
   const validateMessages = {
    
     types: {
-      email: '${label} is not validate email!',
+      email: 'Email is not validate email!',
     },
   };
   const handleChange = value => {
-    const datepicker= value.format('YYYY-MM-DD')
+    // const datepicker= value.format('YYYY-MM-DD')
    
-      setDate(value);
+      // setDate(value);
+    
     };
 
   const handleSubmit = () => {
