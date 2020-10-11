@@ -35,3 +35,6 @@ export let userDetails=[
     email:'name3@gmail.com'
     }
 ]
+
+
+export const ApiinitialState  = [];

@@ -57,3 +57,66 @@ export function updateUser(user){
         payload:user,
     }
 }
+
+
+
+//post actions
+export const GET_POSTS = 'GET POSTS'
+export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS'
+export const GET_POSTS_FAILURE = 'GET_POSTS_FAILURE'
+
+export const getPosts = () => ({ type: GET_POSTS })
+export const getPostsSuccess = posts => ({
+  type: GET_POSTS_SUCCESS,
+  payload: posts,
+})
+export const getPostsFailure = () => ({ type: GET_POSTS_FAILURE })
+
+export function fetchPosts() {
+  return async dispatch => {
+    dispatch(getPosts())
+
+    try {
+      const response = await fetch('http://jsonplaceholder.typicode.com/photos')
+      const data = await response.json()
+
+      dispatch(getPostsSuccess(data))
+    } catch (error) {
+      dispatch(getPostsFailure())
+    }
+  }
+}
+
+
+
+
+// FOR post DATAILS
+export const ADD_POST = 'ADD_POST';
+export const DELETE_POST = 'DELETE_POST';
+export const UPDATE_POST= 'UPDATE_POST';
+
+export function addpost(post){
+  
+    return {
+        type:ADD_POST,
+        payload:post,
+    }
+}
+
+
+export function deletepost(postId){
+console.log("postid",postId);
+    return {
+        type:DELETE_POST,
+        payload:postId,
+    }
+}
+
+export function updatepost(post){
+ 
+    return {
+        type:UPDATE_POST,
+        payload:post,
+    }
+}
+
