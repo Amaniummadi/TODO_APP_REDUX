@@ -1,6 +1,6 @@
 import React, { useState ,useEffect} from 'react';
 import {useSelector,useDispatch} from 'react-redux'
-import { Table, Input, InputNumber, Popconfirm, Form,Divider } from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form,Divider,Image } from 'antd';
 import {  deletepost, updatepost } from '../redux/actions';
 import { fetchPosts } from '../redux/actions';
 
@@ -15,7 +15,7 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
-  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+  const inputNode = inputType === 'image' ? <InputNumber /> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -88,7 +88,7 @@ console.log("post details",postDetails);
       dispatch(updatepost({
        
               id:id,
-              title:row.tile,
+              title:row.title,
               thumbnailUrl:row.thumbnailUrl,
           }));
      

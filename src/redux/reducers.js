@@ -1,6 +1,6 @@
 
 import {combineReducers} from 'redux'
-import {ADD_TODO,DELETE_TODO,UPDATE_TODO,ADD_USER,DELETE_USER,UPDATE_USER,GET_POSTS,GET_POSTS_FAILURE,GET_POSTS_SUCCESS,ADD_POST,DELETE_POST,UPDATE_POST,fetchPosts} from './actions'
+import {ADD_TODO,DELETE_TODO,UPDATE_TODO,ADD_USER,DELETE_USER,UPDATE_USER,GET_POSTS_SUCCESS,ADD_POST,DELETE_POST,UPDATE_POST} from './actions'
 import {todos,userDetails,ApiinitialState} from './states'
 
 
@@ -82,6 +82,7 @@ const userReducer=(state = userDetails,action)=>{
 }
 
  function postsReducer(state = ApiinitialState, action) {
+     
     let newposts
     switch (action.type) {
 
@@ -96,9 +97,9 @@ const userReducer=(state = userDetails,action)=>{
          return newposts;
          case DELETE_POST:
             newposts=[...state];
-            console.log("neewofgdg",newposts);
+            
             newposts=newposts.filter(todo=>todo.id!==action.payload)
-console.log(newposts);
+
          return newposts;
          
         case UPDATE_POST:

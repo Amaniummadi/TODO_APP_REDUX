@@ -113,7 +113,7 @@ console.log("postid",postId);
 }
 
 export function updatepost(post){
- 
+ console.log("post",post);
     return {
         type:UPDATE_POST,
         payload:post,
