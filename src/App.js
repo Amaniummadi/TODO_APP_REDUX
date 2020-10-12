@@ -23,12 +23,13 @@ function App() {
     const isDisplay=true;
   
     const onCreate = (values) => {
+      console.log("oncreate valuves",values);
 //   const datepicker=values['date-picker'].format('YYYY-MM-DD'));
       dispatch(addpost(
       {
           id:uuid(),
           title:values.title,
-          thumbnailUrl:values.thumbnailUrl
+          thumbnailUrl:values.thumbnailUrl.file.thumbUrl
 
       }
   ));

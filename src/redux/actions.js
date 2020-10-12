@@ -77,7 +77,7 @@ export function fetchPosts() {
     dispatch(getPosts())
 
     try {
-      const response = await fetch('http://jsonplaceholder.typicode.com/photos')
+      const response = await fetch('http://jsonplaceholder.typicode.com/photos?_limit=5')
       const data = await response.json()
 
       dispatch(getPostsSuccess(data))

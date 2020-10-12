@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-import { Modal, Form,Button,Input,DatePicker } from 'antd';
-import UserForm from './UserForm';
-import Todoform from './TodoForm';
+import { Modal, Form,Button,Input,DatePicker, Upload, message } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import { Pagination } from 'antd';
 
  function PostForm({ isDisplay,visible, onCreate, onCancel }) {
   // const [date, setDate] = useState(null)
@@ -39,12 +39,30 @@ import Todoform from './TodoForm';
         console.log('Validate Failed:', info);
       });
   }
+  const props = {
+    name: 'file',
+    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    headers: {
+      authorization: 'authorization-text',
+    },
+    onChange(info) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+        console.log("info.file.name",info.file.name);
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+  };
 
   const [form] = Form.useForm();
   return (
     <Modal
       visible={visible}
-      title="Create a new user details"
+      title="Create a new post details"
       okText="Create"
       cancelText="Cancel"
       onCancel={onCancel}
@@ -68,8 +86,8 @@ import Todoform from './TodoForm';
         validateMessages={validateMessages}
       >
              <Form.Item
-                name="Action"
-                label="Action"
+                name="title"
+                label="Title"
                 rules={[
                 {
                 required: true,
@@ -77,11 +95,13 @@ import Todoform from './TodoForm';
                 },
                 ]}
             >
-            <Input placeholder="Action"/>
+            <Input placeholder="Title"/>
             </Form.Item>
-            <Form.Item label="DatePicker" name="date-picker">
-
-            <DatePicker onChange={handleChange} placeholder="select date"/>
+            <Form.Item label="image" name="thumbnailUrl">
+            <Upload   action= 'https://www.mocky.io/v2/5cc8019d300000980a055e76'     listType="picture">
+    <Button icon={<UploadOutlined />}>Click to Upload</Button>
+  </Upload>
+          
             </Form.Item>
    
       </Form>

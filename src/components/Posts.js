@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 
 import {useDispatch,useSelector} from 'react-redux'
 import { fetchPosts } from '../redux/actions';
+import { Pagination } from 'antd';
 
 import Posttems from './Posttems';
 
@@ -20,7 +21,7 @@ const postDetails=useSelector(state=>state.posts)
 
     return (
         <>
-         
+      
             <table className="customers" width="100%">
                 <thead>
             <tr>
@@ -54,7 +55,7 @@ const postDetails=useSelector(state=>state.posts)
            </tbody>
           
             </table>
-
+          
         </>
     )
 }
